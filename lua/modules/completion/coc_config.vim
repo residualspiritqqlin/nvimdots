@@ -131,7 +131,7 @@ let g:coc_global_extensions = [
       \'coc-clangd',
       \'coc-lua',
       \'coc-go',
-      \'coc-pyright',
+      \'coc-jedi',
       \'coc-rust-analyzer',
       \
       \'coc-db',
