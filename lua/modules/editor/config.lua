@@ -97,12 +97,6 @@ function config.neoscroll()
 	require("neoscroll").setup({
 		-- All these keys will be mapped to their corresponding default scrolling animation
 		mappings = {
-			"<C-u>",
-			"<C-d>",
-			"<C-b>",
-			"<C-f>",
-			"<C-y>",
-			"<C-e>",
 			"zt",
 			"zz",
 			"zb",
@@ -142,7 +136,7 @@ function config.toggleterm()
 				return vim.o.columns * 0.40
 			end
 		end,
-		open_mapping = [[<c-\>]],
+		open_mapping = [[<A-g>]],
 		hide_numbers = true, -- hide the number column in toggleterm buffers
 		shade_filetypes = {},
 		shade_terminals = false,
@@ -150,7 +144,7 @@ function config.toggleterm()
 		start_in_insert = true,
 		insert_mappings = true, -- whether or not the open mapping applies in insert mode
 		persist_size = true,
-		direction = "horizontal",
+		direction = "float",
 		close_on_exit = true, -- close the terminal window when the process exits
 		shell = vim.o.shell, -- change the default shell
 	})

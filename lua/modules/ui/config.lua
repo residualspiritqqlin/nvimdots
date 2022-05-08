@@ -215,20 +215,20 @@ function config.nvim_tree()
 	vim.g.nvim_tree_respect_buf_cwd = 1
 
 	vim.g.nvim_tree_icons = {
-		["default"] = "", --
+		["default"] = "",
 		["symlink"] = "",
 		["git"] = {
-			["unstaged"] = "",
-			["staged"] = "", --
-			["unmerged"] = "שׂ",
-			["renamed"] = "", --
-			["untracked"] = "ﲉ",
+			["unstaged"] = "✗",
+			["staged"] = "✓",
+			["unmerged"] = "",
+			["renamed"] = "➜",
+			["untracked"] = "★",
 			["deleted"] = "",
-			["ignored"] = "", --◌
+			["ignored"] = "◌",
 		},
 		["folder"] = {
-			-- ['arrow_open'] = "",
-			-- ['arrow_closed'] = "",
+			["arrow_open"] = "",
+			["arrow_closed"] = "",
 			["arrow_open"] = "",
 			["arrow_closed"] = "",
 			["default"] = "",

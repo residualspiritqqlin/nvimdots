@@ -124,13 +124,13 @@ local dashboard_config = function()
 	}
 end
 
-local minimap_config = function()
+local function minimap_config()
 	vim.g.minimap_auto_start = 0
 	vim.g.minimap_block_filetypes = { "aerial", "NvimTree" }
 	vim.g.minimap_git_colors = 1
 end
 
-local clipboard_config = function()
+local clipboard_settings = function()
 	vim.cmd([[
     let g:clipboard = {
           \   'name': 'win32yank-wsl',
@@ -157,7 +157,7 @@ local load_core = function()
 	neovide_config()
 	dashboard_config()
 	minimap_config()
-	-- clipboard_config()
+	clipboard_settings()
 
 	require("core.options")
 	require("core.mapping")

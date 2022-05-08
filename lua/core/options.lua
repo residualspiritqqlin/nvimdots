@@ -36,7 +36,7 @@ local function load_options()
 		-- backupdir = global.cache_dir .. "backup/",
 		-- viewdir = global.cache_dir .. "view/",
 		-- spellfile = global.cache_dir .. "spell/en.uft-8.add",
-		history = 2000,
+		history = 5000,
 		shada = "!,'300,<50,@100,s10,h",
 		backupskip = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim",
 		smarttab = true,
@@ -97,7 +97,7 @@ local function load_options()
 
 	local bw_local = {
 		undofile = true,
-		synmaxcol = 2500,
+		synmaxcol = 5000,
 		formatoptions = "1jcroql",
 		textwidth = 80,
 		expandtab = false,
