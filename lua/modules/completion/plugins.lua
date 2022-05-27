@@ -11,13 +11,12 @@ completion["creativenull/efmls-configs-nvim"] = {
 	requires = "neovim/nvim-lspconfig",
 }
 completion["williamboman/nvim-lsp-installer"] = {
-	opt = true,
-	after = "nvim-lspconfig",
+	opt = false,
 }
-completion["RishabhRD/nvim-lsputils"] = {
+completion["kevinhwang91/nvim-bqf"] = {
 	opt = true,
-	after = "nvim-lspconfig",
-	config = conf.nvim_lsputils,
+	ft = "qf",
+	config = conf.bqf,
 }
 completion["tami5/lspsaga.nvim"] = {
 	opt = true,

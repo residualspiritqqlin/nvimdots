@@ -10,19 +10,30 @@ function config.telescope()
 	require("telescope").setup({
 		defaults = {
 			initial_mode = "insert",
-			prompt_prefix = "  ",
-			selection_caret = " ",
+			prompt_prefix = "🔭 ",
+			selection_caret = " ",
 			entry_prefix = " ",
 			scroll_strategy = "limit",
 			results_title = false,
-			borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
+			border = true,
+			borderchars = {
+				"─",
+				"│",
+				"─",
+				"│",
+				"╭",
+				"╮",
+				"╯",
+				"╰",
+			},
 			layout_strategy = "horizontal",
 			path_display = { "absolute" },
 			file_ignore_patterns = {},
 			layout_config = {
 				prompt_position = "bottom",
 				horizontal = {
-					preview_width = 0.5,
+					preview_width = 0.6,
+					results_width = 0.6,
 				},
 			},
 			file_previewer = require("telescope.previewers").vim_buffer_cat.new,
@@ -145,7 +156,7 @@ function config.which_key()
 		},
 
 		window = {
-			border = "none", 
+			border = "none",
 			position = "bottom",
 			margin = { 1, 0, 1, 0 },
 			padding = { 1, 1, 1, 1 },
