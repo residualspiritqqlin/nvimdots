@@ -18,6 +18,14 @@ saga.init_lsp_saga({
 	warn_sign = "",
 	hint_sign = "",
 	infor_sign = "",
+	code_action_keys = {
+		quit = "q",
+		exec = "<CR>",
+	},
+	rename_action_keys = {
+		quit = "<C-c>",
+		exec = "<CR>", -- quit can be a table
+	},
 })
 
 lsp_installer.setup({})
@@ -218,7 +226,6 @@ nvim_lsp.html.setup({
 local efmls = require("efmls-configs")
 
 -- Init `efm-langserver` here.
-
 efmls.init({
 	on_attach = custom_attach,
 	capabilities = capabilities,

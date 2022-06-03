@@ -89,10 +89,6 @@ function config.autotag()
 	})
 end
 
-function config.nvim_colorizer()
-	require("colorizer").setup()
-end
-
 function config.neoscroll()
 	require("neoscroll").setup({
 		-- All these keys will be mapped to their corresponding default scrolling animation
@@ -331,26 +327,6 @@ function config.specs()
 		},
 		ignore_filetypes = {},
 		ignore_buftypes = { nofile = true },
-	})
-end
-
-function config.tabout()
-	require("tabout").setup({
-		tabkey = "<A-l>",
-		backwards_tabkey = "<A-h>",
-		ignore_beginning = false,
-		act_as_tab = true,
-		enable_backward = true,
-		completion = true,
-		tabouts = {
-			{ open = "'", close = "'" },
-			{ open = '"', close = '"' },
-			{ open = "`", close = "`" },
-			{ open = "(", close = ")" },
-			{ open = "[", close = "]" },
-			{ open = "{", close = "}" },
-		},
-		exclude = {},
 	})
 end
 
