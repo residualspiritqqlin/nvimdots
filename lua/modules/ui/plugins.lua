@@ -41,11 +41,6 @@ ui["arkav/lualine-lsp-progress"] = {
 	after = "nvim-gps",
 	commit = "56842d097245a08d77912edf5f2a69ba29f275d7",
 }
-ui["glepnir/dashboard-nvim"] = {
-	opt = true,
-	event = "BufWinEnter",
-	commit = "b661c8118b902dbf9ad86018ce48781ee8466612",
-}
 ui["kyazdani42/nvim-tree.lua"] = {
 	opt = true,
 	cmd = { "NvimTreeToggle" },
