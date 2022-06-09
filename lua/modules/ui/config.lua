@@ -260,6 +260,12 @@ function config.nvim_tree()
 			relativenumber = false,
 			signcolumn = "yes",
 			hide_root_folder = false,
+			mappings = {
+				custom_only = false,
+				list = {
+					{ key = { "<C-]>", "<2-RightMouse>", "<CR>" }, action = "cd" },
+				},
+			},
 		},
 		renderer = {
 			indent_markers = {
