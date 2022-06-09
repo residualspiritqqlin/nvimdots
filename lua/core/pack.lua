@@ -5,6 +5,8 @@ local data_dir = require("core.global").data_dir
 local modules_dir = vim_path .. "/lua/modules"
 local packer_compiled = data_dir .. "lua/_compiled.lua"
 local bak_compiled = data_dir .. "lua/bak_compiled.lua"
+local snapshot_path = data_dir .. "lua/snapshot_path"
+local stable_snapshot = data_dir .. "lua/snapshot_path/2022-06-09"
 local packer = nil
 
 local Packer = {}
@@ -39,6 +41,8 @@ function Packer:load_packer()
 	if not is_mac then
 		packer.init({
 			compile_path = packer_compiled,
+			snapshot = stable_snapshot,
+			snapshot_path = snapshot_path,
 			git = { clone_timeout = 60, default_url_format = "git@github.com:%s" },
 			disable_commands = true,
 			display = {
@@ -50,6 +54,8 @@ function Packer:load_packer()
 	else
 		packer.init({
 			compile_path = packer_compiled,
+			snapshot = stable_snapshot,
+			snapshot_path = snapshot_path,
 			git = { clone_timeout = 60, default_url_format = "git@github.com:%s" },
 			disable_commands = true,
 			max_jobs = 20,
@@ -122,6 +128,7 @@ function plugins.load_compile()
 	vim.cmd([[command! PackerUpdate lua require('core.pack').update()]])
 	vim.cmd([[command! PackerSync lua require('core.pack').sync()]])
 	vim.cmd([[command! PackerClean lua require('core.pack').clean()]])
+	vim.cmd([[command! PackerSnapshot lua require('core.pack').snapshot()]])
 	vim.cmd([[autocmd User PackerComplete lua require('core.pack').back_compile()]])
 	vim.cmd([[command! PackerStatus lua require('core.pack').compile() require('packer').status()]])
 end
