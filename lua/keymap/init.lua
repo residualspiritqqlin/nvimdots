@@ -28,6 +28,7 @@ local plug_map = {
 	["n|<leader>pu"] = map_cr("PackerUpdate"):with_silent():with_noremap():with_nowait(),
 	["n|<leader>pi"] = map_cr("PackerInstall"):with_silent():with_noremap():with_nowait(),
 	["n|<leader>pc"] = map_cr("PackerCompile"):with_silent():with_noremap():with_nowait(),
+	["n|<leader>pb"] = map_cr("PackerSnapshot"):with_silent():with_noremap():with_nowait(),
 	-- Plugin split-term
 	["n|<F5>"] = map_cr("Term"):with_noremap():with_silent(),
 	["n|<C-x>e"] = map_cr("Term"):with_noremap():with_silent(),
@@ -46,7 +47,7 @@ local plug_map = {
 	["n|<Leader>sc"] = map_cu("DashboardChangeColorscheme"):with_noremap():with_silent(),
 	["n|<Leader>fw"] = map_cu("DashboardFindWord"):with_noremap():with_silent(),
 	["n|<Leader>fn"] = map_cu("DashboardNewFile"):with_noremap():with_silent(),
-	["n|<Leader>fb"] = map_cu("Telescope file_browser"):with_noremap():with_silent(),
+	["n|<Leader>fb"] = map_cu("Telescope buffers"):with_noremap():with_silent(),
 	["n|<Leader>fg"] = map_cu("Telescope git_files"):with_noremap():with_silent(),
 	["n|<Leader>fh"] = map_cu("Telescope help_tags"):with_noremap():with_silent(),
 	["n|<Leader>fz"] = map_cu("Telescope zoxide list"):with_noremap():with_silent(),

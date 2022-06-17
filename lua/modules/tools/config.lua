@@ -54,6 +54,10 @@ function config.telescope()
 				show_unindexed = true,
 				ignore_patterns = { "*.git/*", "*/tmp/*" },
 			},
+			project = {
+				hidden_files = true, -- default: false
+				theme = "ivy",
+			},
 		},
 	})
 

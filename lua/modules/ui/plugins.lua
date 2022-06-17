@@ -43,7 +43,7 @@ ui["arkav/lualine-lsp-progress"] = {
 }
 ui["glepnir/dashboard-nvim"] = {
 	opt = false,
-	--commit = "a990f2c0ae59e043b07b557a6a48f290c63289e3",
+	commit = "a990f2c0ae59e043b07b557a6a48f290c63289e3",
 }
 ui["kyazdani42/nvim-tree.lua"] = {
 	opt = true,
