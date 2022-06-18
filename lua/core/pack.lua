@@ -6,7 +6,7 @@ local modules_dir = vim_path .. "/lua/modules"
 local packer_compiled = data_dir .. "lua/_compiled.lua"
 local bak_compiled = data_dir .. "lua/bak_compiled.lua"
 local snapshot_path = data_dir .. "lua/snapshot_path"
-local stable_snapshot = data_dir .. "lua/snapshot_path/2022-06-17"
+local stable_snapshot = data_dir .. "lua/snapshot_path/2022-06-18"
 local packer = nil
 
 local Packer = {}
