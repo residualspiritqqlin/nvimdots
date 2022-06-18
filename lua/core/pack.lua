@@ -6,7 +6,7 @@ local modules_dir = vim_path .. "/lua/modules"
 local packer_compiled = data_dir .. "lua/_compiled.lua"
 local bak_compiled = data_dir .. "lua/bak_compiled.lua"
 local snapshot_path = data_dir .. "lua/snapshot_path"
-local stable_snapshot = data_dir .. "lua/snapshot_path/2022-06-16"
+local stable_snapshot = data_dir .. "lua/snapshot_path/2022-06-17"
 local packer = nil
 
 local Packer = {}
@@ -41,7 +41,7 @@ function Packer:load_packer()
 	if not is_mac then
 		packer.init({
 			compile_path = packer_compiled,
-			-- snapshot = stable_snapshot,
+			snapshot = stable_snapshot,
 			snapshot_path = snapshot_path,
 			git = { clone_timeout = 60, default_url_format = "git@github.com:%s" },
 			disable_commands = true,

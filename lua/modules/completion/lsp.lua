@@ -67,8 +67,6 @@ local function switch_source_header_splitcmd(bufnr, splitcmd)
 	end
 end
 
--- Override server settings here
-
 for _, server in ipairs(lsp_installer.get_installed_servers()) do
 	if server.name == "gopls" then
 		nvim_lsp.gopls.setup({
@@ -89,6 +87,28 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
 			},
 		})
 	elseif server.name == "sumneko_lua" then
+		-- Override server settings here
+		local library = {}
+		local path = vim.split(package.path, ";")
+		-- this is the ONLY correct way to setup your path
+		table.insert(path, "lua/?.lua")
+		table.insert(path, "lua/?/init.lua")
+
+		local function add_lib(lib)
+			for _, p in pairs(vim.fn.expand(lib, false, true)) do
+				p = vim.loop.fs_realpath(p)
+				library[p] = true
+			end
+		end
+		-- add runtime
+		add_lib("$VIMRUNTIME")
+		-- add your config
+		add_lib("~/.config/nvim")
+
+		-- add plugins
+		-- if you're not using packer, then you might need to change the paths below
+		add_lib("~/.local/share/nvim/site/pack/packer/opt/*")
+		add_lib("~/.local/share/nvim/site/pack/packer/start/*")
 		nvim_lsp.sumneko_lua.setup({
 			capabilities = capabilities,
 			on_attach = custom_attach,
@@ -96,14 +116,15 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
 				Lua = {
 					diagnostics = { globals = { "vim", "packer_plugins" } },
 					workspace = {
-						library = {
-							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-							[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-						},
+						-- Make the server aware of Neovim runtime files
 						maxPreload = 100000,
 						preloadFileSize = 10000,
+						library = library,
 					},
-					telemetry = { enable = false },
+					-- Do not send telemetry data containing a randomized but unique identifier
+					telemetry = {
+						enable = false,
+					},
 				},
 			},
 		})
@@ -223,6 +244,12 @@ nvim_lsp.html.setup({
 	on_attach = custom_attach,
 })
 
+nvim_lsp.pylsp.setup({
+	language_server = "jedi_language_server",
+	capabilities = capabilities,
+	on_attach = custom_attach,
+})
+
 local efmls = require("efmls-configs")
 
 -- Init `efm-langserver` here.
@@ -240,10 +267,18 @@ local eslint = require("efmls-configs.linters.eslint")
 local flake8 = require("efmls-configs.linters.flake8")
 local shellcheck = require("efmls-configs.linters.shellcheck")
 
-local black = require("efmls-configs.formatters.black")
+--local black = require("efmls-configs.formatters.black")
+local fs = require("efmls-configs.fs")
+local formatter = "black"
+local command = string.format("%s --no-color -q --line-length 80 -", fs.executable(formatter))
+local black = {
+	formatCommand = command,
+	formatStdin = true,
+}
+
 local luafmt = require("efmls-configs.formatters.stylua")
 local clangfmt = {
-	formatCommand = "clang-format -style='{BasedOnStyle: LLVM, ColumnLimit: 100}'",
+	formatCommand = "clang-format -style='{BasedOnStyle: LLVM, ColumnLimit: 120}'",
 	formatStdin = true,
 }
 local prettier = require("efmls-configs.formatters.prettier")

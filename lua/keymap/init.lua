@@ -118,6 +118,8 @@ local plug_map = {
 	["n|<F9>"] = map_cr("lua require('dap').step_out()"):with_noremap():with_silent(),
 	["n|<leader>do"] = map_cr("lua require('dap').step_out()"):with_noremap():with_silent(),
 	["n|<leader>dl"] = map_cr("lua require('dap').repl.open()"):with_noremap():with_silent(),
+	-- cpp
+	["v,n,i,x|<leader>s"] = map_cr("ClangdSwitchSourceHeader "):with_noremap():with_silent(),
 }
 
 bind.nvim_load_mapping(plug_map)
