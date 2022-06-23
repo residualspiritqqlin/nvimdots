@@ -251,6 +251,7 @@ function config.nvim_tree()
 		open_on_tab = false,
 		sort_by = "name",
 		update_cwd = true,
+		--reload_on_bufenter = true,
 		view = {
 			width = 30,
 			height = 30,
@@ -264,6 +265,7 @@ function config.nvim_tree()
 				custom_only = false,
 				list = {
 					{ key = { "<C-]>", "<2-RightMouse>", "<CR>" }, action = "cd" },
+					{ key = "u", action = "dir_up" },
 				},
 			},
 		},
@@ -283,7 +285,7 @@ function config.nvim_tree()
 		},
 		update_focused_file = {
 			enable = true,
-			update_cwd = true,
+			update_cwd = false,
 			ignore_list = {},
 		},
 		ignore_ft_on_setup = {},
@@ -334,8 +336,11 @@ function config.nvim_bufferline()
 			offsets = {
 				{
 					filetype = "NvimTree",
-					text = "File Explorer",
+					text = function()
+						return vim.fn.getcwd()
+					end,
 					text_align = "center",
+					highlight = "Directory",
 					padding = 1,
 				},
 			},
