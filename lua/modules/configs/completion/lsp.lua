@@ -38,7 +38,7 @@ return function()
 			"clangd",
 			"efm",
 			"gopls",
-			"pyright",
+			"jedi_language_server",
 			"sumneko_lua",
 		},
 	})
@@ -131,7 +131,13 @@ return function()
 	local eslint = require("efmls-configs.linters.eslint")
 	local flake8 = require("efmls-configs.linters.flake8")
 
-	local black = require("efmls-configs.formatters.black")
+	local fs = require("efmls-configs.fs")
+	local formatter = "black"
+	local command = string.format("%s --no-color -q --preview -S -C --line-length 120 -", fs.executable(formatter, nil))
+	local black = {
+		formatCommand = command,
+		formatStdin = true,
+	}
 	local luafmt = require("efmls-configs.formatters.stylua")
 	-- local stylua = require("efmls-configs.formatters.stylua")
 	local prettier = require("efmls-configs.formatters.prettier")
