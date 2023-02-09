@@ -44,6 +44,7 @@ local def_map = {
 	["n|<C-l>"] = map_cmd("<C-w>l"):with_noremap(),
 	["n|<C-j>"] = map_cmd("<C-w>j"):with_noremap(),
 	["n|<C-k>"] = map_cmd("<C-w>k"):with_noremap(),
+	["n|<C-]>"] = map_cr("lua vim.lsp.buf.definition()"):with_noremap():with_silent(),
 	["n|<C-a>"] = map_cmd("^"):with_noremap(),
 	["n|<C-e>"] = map_cmd("<End>"):with_noremap(),
 	["n|<A-[>"] = map_cr("vertical resize +5"):with_silent(),

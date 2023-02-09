@@ -21,11 +21,6 @@ completion["kevinhwang91/nvim-bqf"] = {
 	config = conf.bqf,
 	commit = "0cc539c52e51d32d8febf1f04c5e7ed5353fead2",
 }
-completion["tami5/lspsaga.nvim"] = {
-	opt = true,
-	after = "nvim-lspconfig",
-	--commit = "cb0e35d2e594ff7a9c408d2e382945d56336c040",
-}
 completion["stevearc/aerial.nvim"] = {
 	opt = true,
 	after = "nvim-lspconfig",
@@ -38,7 +33,14 @@ completion["kosayoda/nvim-lightbulb"] = {
 	config = conf.lightbulb,
 	commit = "1adc99adcfe2f3e2b3051f6449e1673e66643e77",
 }
-completion["ray-x/lsp_signature.nvim"] = { opt = true, after = "nvim-lspconfig" }
+--completion["ray-x/lsp_signature.nvim"] = { opt = true, after = "nvim-lspconfig" }
+completion["tami5/lspsaga.nvim"] = {
+	opt = true,
+	branch = "nvim6.0",
+	config = conf.lspsaga,
+	after = "nvim-lspconfig",
+}
+
 completion["hrsh7th/nvim-cmp"] = {
 	config = conf.cmp,
 	event = "InsertEnter",
@@ -60,6 +62,11 @@ completion["hrsh7th/nvim-cmp"] = {
 		-- }
 		commit = "033a817ced907c8bcdcbe3355d7ea67446264f4b",
 	},
+}
+completion["hrsh7th/cmp-nvim-lsp-signature-help"] = {
+	opt = true,
+	after = "nvim-cmp",
+	commit = "007dd2740d9b70f2688db01a39d6d25b7169cd57",
 }
 completion["L3MON4D3/LuaSnip"] = {
 	after = "nvim-cmp",

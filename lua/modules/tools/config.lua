@@ -1,4 +1,5 @@
 local config = {}
+local trouble = require("trouble.providers.telescope")
 
 function config.telescope()
 	vim.cmd([[packadd sqlite.lua]])
@@ -9,6 +10,10 @@ function config.telescope()
 
 	require("telescope").setup({
 		defaults = {
+			mappings = {
+				i = { ["<c-t>"] = trouble.open_with_trouble },
+				n = { ["<c-t>"] = trouble.open_with_trouble },
+			},
 			initial_mode = "insert",
 			prompt_prefix = "🔭 ",
 			selection_caret = " ",

@@ -4,6 +4,51 @@ function config.nvim_lsp()
 	require("modules.completion.lsp")
 end
 
+function config.lspsaga()
+	require("lspsaga").setup({
+		debug = false,
+		use_saga_diagnostic_sign = true,
+		-- diagnostic sign
+		error_sign = "",
+		warn_sign = "",
+		hint_sign = "",
+		infor_sign = "",
+		diagnostic_header_icon = "   ",
+		-- code action title icon
+		code_action_icon = " ",
+		code_action_prompt = {
+			enable = true,
+			sign = true,
+			sign_priority = 40,
+			virtual_text = true,
+		},
+		finder_definition_icon = "  ",
+		finder_reference_icon = "  ",
+		max_preview_lines = 10,
+		finder_action_keys = {
+			open = "o",
+			vsplit = "s",
+			split = "i",
+			quit = "q",
+			scroll_down = "<C-f>",
+			scroll_up = "<C-b>",
+		},
+		code_action_keys = {
+			quit = "q",
+			exec = "<CR>",
+		},
+		rename_action_keys = {
+			quit = "<C-c>",
+			exec = "<CR>",
+		},
+		definition_preview_icon = "  ",
+		border_style = "single",
+		rename_prompt_prefix = "➤",
+		server_filetype_map = {},
+		diagnostic_prefix_format = "%d. ",
+	})
+end
+
 function config.lightbulb()
 	vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])
 	require("nvim-lightbulb").setup({
@@ -380,14 +425,20 @@ function config.cmp()
 				else
 					fallback()
 				end
-			end, { "i", "s" }),
+			end, {
+				"i",
+				"s",
+			}),
 			["<S-Tab>"] = cmp.mapping(function(fallback)
 				if cmp.visible() then
 					cmp.select_prev_item()
 				else
 					fallback()
 				end
-			end, { "i", "s" }),
+			end, {
+				"i",
+				"s",
+			}),
 			["<C-h>"] = function(fallback)
 				if require("luasnip").jumpable(-1) then
 					vim.fn.feedkeys(t("<Plug>luasnip-jump-prev"), "")
@@ -413,6 +464,7 @@ function config.cmp()
 			{ name = "nvim_lsp" },
 			{ name = "nvim_lua" },
 			{ name = "luasnip" },
+			{ name = "nvim_lsp_signature_help" },
 			{ name = "path" },
 			{ name = "spell" },
 			{ name = "tmux" },

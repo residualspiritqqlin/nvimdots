@@ -5,7 +5,7 @@ local format_on_save = true
 vim.cmd([[command! FormatToggle lua require'modules.completion.formatting'.toggle_format_on_save()]])
 
 function M.enable_format_on_save(is_configure)
-	local opts = { pattern = "*", timeout = 1000 }
+	local opts = { pattern = "*", timeout = 3000 }
 	vim.api.nvim_create_augroup("format_on_save", {})
 	vim.api.nvim_create_autocmd("BufWritePre", {
 		group = "format_on_save",
@@ -95,4 +95,3 @@ function M.format(opts)
 end
 
 return M
-

@@ -2,47 +2,19 @@ local formatting = require("modules.completion.formatting")
 
 vim.cmd([[packadd nvim-lsp-installer]])
 vim.cmd([[packadd lsp_signature.nvim]])
-vim.cmd([[packadd lspsaga.nvim]])
 vim.cmd([[packadd cmp-nvim-lsp]])
 vim.cmd([[packadd aerial.nvim]])
 vim.cmd([[packadd vim-illuminate]])
+vim.cmd([[packadd nvim-cmp]])
 
 local nvim_lsp = require("lspconfig")
-local saga = require("lspsaga")
 local lsp_installer = require("nvim-lsp-installer")
 
--- Override diagnostics symbol
-
-saga.init_lsp_saga({
-	error_sign = "",
-	warn_sign = "",
-	hint_sign = "",
-	infor_sign = "",
-	code_action_keys = {
-		quit = "q",
-		exec = "<CR>",
-	},
-	rename_action_keys = {
-		quit = "<C-c>",
-		exec = "<CR>", -- quit can be a table
-	},
-})
-
 lsp_installer.setup({})
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 local function custom_attach(client)
-	require("lsp_signature").on_attach({
-		bind = true,
-		use_lspsaga = false,
-		floating_window = true,
-		fix_pos = true,
-		hint_enable = true,
-		hi_parameter = "Search",
-		handler_opts = { "double" },
-	})
 	require("aerial").on_attach(client)
 	require("illuminate").on_attach(client)
 end
@@ -248,6 +220,17 @@ nvim_lsp.pylsp.setup({
 	language_server = "jedi_language_server",
 	capabilities = capabilities,
 	on_attach = custom_attach,
+	flags = {
+		-- This will be the default in neovim 0.7+
+		debounce_text_changes = 150,
+	},
+	settings = {
+		pylsp = {
+			plugins = {
+				pycodestyle = { enabled = false },
+			},
+		},
+	},
 })
 
 local efmls = require("efmls-configs")
@@ -270,7 +253,7 @@ local shellcheck = require("efmls-configs.linters.shellcheck")
 --local black = require("efmls-configs.formatters.black")
 local fs = require("efmls-configs.fs")
 local formatter = "black"
-local command = string.format("%s --no-color -q --line-length 80 -", fs.executable(formatter))
+local command = string.format("%s --no-color -q --preview -S -C --line-length 120 -", fs.executable(formatter, nil))
 local black = {
 	formatCommand = command,
 	formatStdin = true,
@@ -291,11 +274,11 @@ local shfmt = require("efmls-configs.formatters.shfmt")
 -- Override default config here
 
 flake8 = vim.tbl_extend("force", flake8, {
-	prefix = "flake8: max-line-length=160, ignore F403 and F405",
+	prefix = "flake8: max-line-length=120, ignore F403 and F405 and E203 and E402 and E731 and W605",
 	lintStdin = true,
 	lintIgnoreExitCode = true,
 	lintFormats = { "%f:%l:%c: %t%n%n%n %m" },
-	lintCommand = "flake8 --max-line-length 160 --extend-ignore F403,F405 --format '%(path)s:%(row)d:%(col)d: %(code)s %(code)s %(text)s' --stdin-display-name ${INPUT} -",
+	lintCommand = "flake8 --max-line-length 120 --extend-ignore F403,F405,E203,E402,E731,W605 --format '%(path)s:%(row)d:%(col)d: %(code)s %(code)s %(text)s' --stdin-display-name ${INPUT} -",
 })
 
 -- Setup formatter and linter for efmls here
@@ -305,7 +288,7 @@ efmls.setup({
 	lua = { formatter = luafmt },
 	c = { formatter = clangfmt, linter = clangtidy },
 	cpp = { formatter = clangfmt, linter = clangtidy },
-	python = { formatter = black },
+	python = { formatter = black, linter = flake8 },
 	vue = { formatter = prettier },
 	typescript = { formatter = prettier, linter = eslint },
 	javascript = { formatter = prettier, linter = eslint },
