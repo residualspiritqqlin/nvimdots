@@ -22,7 +22,6 @@ return function()
 			separator = icons.misc.Vbar,
 			group = icons.misc.Add,
 		},
-
 		window = {
 			border = "none",
 			position = "bottom",

@@ -127,37 +127,37 @@ return function()
 	-- Require `efmls-configs-nvim`'s config here
 
 	local vint = require("efmls-configs.linters.vint")
+	local clangtidy = require("efmls-configs.linters.clang_tidy")
 	local eslint = require("efmls-configs.linters.eslint")
 	local flake8 = require("efmls-configs.linters.flake8")
 
 	local black = require("efmls-configs.formatters.black")
-	local stylua = require("efmls-configs.formatters.stylua")
+	local luafmt = require("efmls-configs.formatters.stylua")
+	-- local stylua = require("efmls-configs.formatters.stylua")
 	local prettier = require("efmls-configs.formatters.prettier")
 	local shfmt = require("efmls-configs.formatters.shfmt")
-
+	local shellcheck = require("efmls-configs.linters.shellcheck")
 	-- Add your own config for formatter and linter here
 
 	-- local rustfmt = require("completion.efm.formatters.rustfmt")
 	local clangfmt = require("completion.efm.formatters.clangfmt")
 
 	-- Override default config here
-
 	flake8 = vim.tbl_extend("force", flake8, {
-		prefix = "flake8: max-line-length=160, ignore F403 and F405",
+		prefix = "flake8: max-line-length=120, ignore F403 and F405 and E203 and E402 and E731 and W605",
 		lintStdin = true,
 		lintIgnoreExitCode = true,
 		lintFormats = { "%f:%l:%c: %t%n%n%n %m" },
-		lintCommand = "flake8 --max-line-length 160 --extend-ignore F403,F405 --format '%(path)s:%(row)d:%(col)d: %(code)s %(code)s %(text)s' --stdin-display-name ${INPUT} -",
+		lintCommand = "flake8 --max-line-length 120 --extend-ignore F403,F405,E203,E402,E731,W605 --format '%(path)s:%(row)d:%(col)d: %(code)s %(code)s %(text)s' --stdin-display-name ${INPUT} -",
 	})
-
 	-- Setup formatter and linter for efmls here
 
 	efmls.setup({
 		vim = { formatter = vint },
-		lua = { formatter = stylua },
-		c = { formatter = clangfmt },
-		cpp = { formatter = clangfmt },
-		python = { formatter = black },
+		lua = { formatter = luafmt },
+		c = { formatter = clangfmt, linter = clangtidy },
+		cpp = { formatter = clangfmt, linter = clangtidy },
+		python = { formatter = black, linter = flake8 },
 		vue = { formatter = prettier },
 		typescript = { formatter = prettier, linter = eslint },
 		javascript = { formatter = prettier, linter = eslint },
@@ -167,10 +167,9 @@ return function()
 		html = { formatter = prettier },
 		css = { formatter = prettier },
 		scss = { formatter = prettier },
-		sh = { formatter = shfmt },
+		sh = { formatter = shfmt, linter = shellcheck },
 		markdown = { formatter = prettier },
 		-- rust = {formatter = rustfmt},
 	})
-
 	formatting.configure_format_on_save()
 end

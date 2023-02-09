@@ -1,6 +1,7 @@
 return function()
 	local icons = { ui = require("modules.utils.icons").get("ui", true) }
 	local lga_actions = require("telescope-live-grep-args.actions")
+	local trouble = require("trouble.providers.telescope")
 
 	require("telescope").setup({
 		defaults = {
@@ -16,6 +17,10 @@ return function()
 				horizontal = {
 					preview_width = 0.5,
 				},
+			},
+			mappings = {
+				i = { ["<c-t>"] = trouble.open_with_trouble },
+				n = { ["<c-t>"] = trouble.open_with_trouble },
 			},
 			file_previewer = require("telescope.previewers").vim_buffer_cat.new,
 			grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,

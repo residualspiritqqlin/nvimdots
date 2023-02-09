@@ -110,7 +110,7 @@
         "path": "./snippets/shell.json"
       },
       {
-        "language": ["markdown", "rmd"],
+        "language": ["markdown", "rmd", "md"],
         "path": "./snippets/markdown.json"
       },
       {

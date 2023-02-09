@@ -101,6 +101,15 @@ return function()
 		return ""
 	end
 
+	local gps = require("nvim-gps")
+	local function gps_content()
+		if gps.is_available() then
+			return gps.get_location()
+		else
+			return ""
+		end
+	end
+
 	require("lualine").setup({
 		options = {
 			icons_enabled = true,
@@ -110,9 +119,13 @@ return function()
 			section_separators = { left = "", right = "" },
 		},
 		sections = {
-			lualine_a = { { "mode" } },
+			lualine_a = { "mode" },
 			lualine_b = { { "branch" }, { "diff", source = diff_source } },
-			lualine_c = { lspsaga_symbols },
+			lualine_c = {
+				{ "filename" },
+				{ "lsp_progress" },
+				{ gps_content, cond = gps.is_available },
+			},
 			lualine_x = {
 				{ escape_status },
 				{
@@ -124,12 +137,12 @@ return function()
 						info = icons.diagnostics.Information,
 					},
 				},
-				{ get_cwd },
 			},
 			lualine_y = {
-				{ "filetype", colored = true, icon_only = true },
-				{ python_venv },
-				{ "encoding" },
+				{
+					"filetype",
+					"encoding",
+				},
 				{
 					"fileformat",
 					icons_enabled = true,

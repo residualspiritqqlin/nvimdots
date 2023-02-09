@@ -70,7 +70,7 @@ local disable_distribution_plugins = function()
 end
 
 local leader_map = function()
-	vim.g.mapleader = " "
+	vim.g.mapleader = ","
 	vim.api.nvim_set_keymap("n", " ", "", { noremap = true })
 	vim.api.nvim_set_keymap("x", " ", "", { noremap = true })
 end
@@ -90,26 +90,51 @@ local neovide_config = function()
 end
 
 local clipboard_config = function()
-	if global.is_mac then
-		vim.g.clipboard = {
-			name = "macOS-clipboard",
-			copy = { ["+"] = "pbcopy", ["*"] = "pbcopy" },
-			paste = { ["+"] = "pbpaste", ["*"] = "pbpaste" },
-			cache_enabled = 0,
-		}
-	elseif global.is_wsl then
-		vim.g.clipboard = {
-			name = "win32yank-wsl",
-			copy = {
-				["+"] = "win32yank.exe -i --crlf",
-				["*"] = "win32yank.exe -i --crlf",
-			},
-			paste = {
-				["+"] = "win32yank.exe -o --lf",
-				["*"] = "win32yank.exe -o --lf",
-			},
-			cache_enabled = 0,
-		}
+	if global.is_linux then
+		vim.cmd([[
+        let g:clipboard = {
+            \   'name': 'TmuxTermux',
+            \   'copy': {
+            \      '*': ['tmux', 'load-buffer', '-'],
+            \      '+': ['tmux', 'load-buffer', '-'],
+            \    },
+            \   'paste': {
+            \      '*': ['tmux', 'save-buffer', '-'],
+            \      '-': ['tmux', 'save-buffer', '-'],
+            \   },
+            \   'cache_enabled': 1,
+            \ }
+		]])
+	elseif global.is_windows then
+		vim.cmd([[
+        let g:clipboard = {
+            \   'name': 'win32yank-wsl',
+            \   'copy': {
+            \      '+': 'win32yank.exe -i --crlf',
+            \      '*': 'win32yank.exe -i --crlf',
+            \    },
+            \   'paste': {
+            \      '+': 'win32yank.exe -o --lf',
+            \      '*': 'win32yank.exe -o --lf',
+            \   },
+            \   'cache_enabled': 0,
+            \ }
+        ]])
+	elseif global.is_mac then
+		vim.cmd([[
+		let g:clipboard = {
+			\   'name': 'macos+tmux',
+    		\   'copy': {
+    		\      '+': ['pbcopy'],
+    		\      '*': ['tmux', 'load-buffer', '-'],
+    		\    },
+    		\   'paste': {
+    		\      '+': ['pbpaste'],
+    		\      '*': ['tmux', 'save-buffer', '-'],
+    		\   },
+    		\   'cache_enabled': 0,
+    		\ }
+		]])
 	end
 end
 

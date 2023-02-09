@@ -38,6 +38,15 @@ return function()
 			end,
 			additional_vim_regex_highlighting = { "c", "cpp" },
 		},
+		incremental_selection = {
+			enable = true,
+			keymaps = {
+				init_selection = "<CR>",
+				node_incremental = "<CR>",
+				node_decremental = "<BS>",
+				scope_incremental = "<TAB>",
+			},
+		},
 		textobjects = {
 			select = {
 				enable = true,
@@ -72,7 +81,7 @@ return function()
 		rainbow = {
 			enable = true,
 			extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
-			max_file_lines = 2000, -- Do not enable for files with more than 2000 lines, int
+			max_file_lines = 5000, -- Do not enable for files with more than 2000 lines, int
 		},
 		context_commentstring = { enable = true, enable_autocmd = false },
 		matchup = { enable = true },

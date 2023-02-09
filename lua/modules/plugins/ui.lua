@@ -34,6 +34,11 @@ ui["lukas-reineke/indent-blankline.nvim"] = {
 	event = "BufReadPost",
 	config = require("ui.indent-blankline"),
 }
+ui["SmiteshP/nvim-gps"] = {
+	lazy = true,
+	config = require("ui.gps"),
+	commit = "8f950881c6308884e1262f1a10eadede1ad4253c",
+}
 ui["nvim-lualine/lualine.nvim"] = {
 	lazy = true,
 	event = { "BufReadPost", "BufAdd", "BufNewFile" },

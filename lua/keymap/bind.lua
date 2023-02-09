@@ -102,16 +102,25 @@ function pbind.map_callback(callback)
 	return ro:map_callback(callback)
 end
 
+function pbind.split(str, sep)
+	if sep == nil then
+		sep = ","
+	end
+	local t = {}
+	for w in string.gmatch(str, "([^" .. sep .. "]+)") do
+		table.insert(t, w)
+	end
+	return t
+end
+
 function pbind.nvim_load_mapping(mapping)
 	for key, value in pairs(mapping) do
-		local mode, keymap = key:match("([^|]*)|?(.*)")
-		if type(value) == "table" then
-			local rhs = value.cmd
-			local options = value.options
-			local buf = value.buffer
-			if buf then
-				vim.api.nvim_buf_set_keymap(buf, mode, keymap, rhs, options)
-			else
+		local mode_str, keymap = key:match("([^|]*)|?(.*)")
+		local mode_list = pbind.split(mode_str, ",")
+		for key, mode in pairs(mode_list) do
+			if type(value) == "table" then
+				local rhs = value.cmd
+				local options = value.options
 				vim.api.nvim_set_keymap(mode, keymap, rhs, options)
 			end
 		end
