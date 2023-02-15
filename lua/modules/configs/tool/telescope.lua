@@ -43,7 +43,7 @@ return function()
 			frecency = {
 				show_scores = true,
 				show_unindexed = true,
-				ignore_patterns = { "*.git/*", "*/tmp/*" },
+				ignore_patterns = { "*.git/*", "*/tmp/*", ".nox/*" },
 			},
 			live_grep_args = {
 				auto_quoting = true, -- enable/disable auto-quoting
