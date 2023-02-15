@@ -28,7 +28,15 @@ local def_map = {
 	["n|<A-l>"] = map_cmd("<ESC>vwuw"):with_noremap():with_silent(),
 	["v,x,i,n|<C-x>n"] = map_cr("cn"):with_noremap():with_silent(),
 	["v,x,i,n|<C-x>p"] = map_cr("cp"):with_noremap():with_silent(),
-	["n|<Leader>`"] = map_cr("tabNext"):with_noremap():with_silent(),
+	["n|<Leader>`"] = map_cr("tabNext"):with_noremap():with_silent():with_desc("cNext"),
+	["n|<Leader><cr>q"] = map_cr("lua vim.diagnostic.setloclist()")
+		:with_noremap()
+		:with_silent()
+		:with_desc("diagnostic local list"),
+	["n|<Leader><cr>l"] = map_cr("lua vim.diagnostic.setqflist()")
+		:with_noremap()
+		:with_silent()
+		:with_desc("diagnostic quickfix"),
 	-- Vim map
 	--["n|<F3>"] = map_cr("set hls!"):with_noremap():with_silent(),
 	["n|<F3>"] = map_cmd("<ESC>q1"):with_noremap():with_silent(),
@@ -56,6 +64,7 @@ local def_map = {
 	["n|<A-S-q>"] = map_cmd(":bw!<CR>"),
 	["n|<A-s>"] = map_cmd("<Esc>:w<CR>"),
 	["n|<leader>o"] = map_cr("setlocal spell! spelllang=en_us"),
+
 	-- Insert
 	["i|<F3>"] = map_cmd("<ESC>qa"):with_noremap():with_silent(),
 	["i|<C-u>"] = map_cmd("<C-G>u<C-U>"):with_noremap(),
