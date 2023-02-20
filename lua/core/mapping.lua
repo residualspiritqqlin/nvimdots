@@ -43,6 +43,7 @@ local def_map = {
 	["n|<F4>"] = map_cmd("<ESC>@1"):with_noremap():with_silent(),
 	["n|<C-x>k"] = map_cr("Bwipeout"):with_noremap():with_silent(),
 	["n|<C-s>"] = map_cu("write"):with_noremap(),
+
 	["n|Y"] = map_cmd("y$"),
 	["n|D"] = map_cmd("d$"),
 	["n|n"] = map_cmd("nzzzv"):with_noremap(), -- 搜索时把当前结果置于屏幕中央并打开折叠

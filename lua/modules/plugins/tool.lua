@@ -108,4 +108,8 @@ tool["mfussenegger/nvim-dap"] = {
 	},
 }
 
+tool["gbprod/yanky.nvim"] = {
+	lazy = false,
+	config = require("tool.yarky"),
+}
 return tool

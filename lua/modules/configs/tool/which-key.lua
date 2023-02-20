@@ -29,5 +29,6 @@ return function()
 			padding = { 1, 1, 1, 1 },
 			winblend = 0,
 		},
+		hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " },
 	})
 end

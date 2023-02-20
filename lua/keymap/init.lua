@@ -36,6 +36,13 @@ local function command_panel()
 end
 
 local plug_map = {
+	-- yank
+	["x,n|p"] = map_cmd("<Plug>(YankyPutAfter)"):with_silent():with_noremap():with_desc("YankyPutAfter"),
+	["x,n|P"] = map_cmd("<Plug>(YankyPutBefore)"):with_silent():with_noremap():with_desc("YankyPutBefore"),
+	["x,n|gp"] = map_cmd("<Plug>(YankyGPutAfter)"):with_silent():with_noremap():with_desc("YankyGPutAfter"),
+	["x,n|gP"] = map_cmd("<Plug>(YankyGPutBefore)"):with_silent():with_noremap():with_desc("YankyGPutBefore"),
+	["n|<A-p>"] = map_cmd("<Plug>(YankyCycleForward)"):with_silent():with_noremap():with_desc("YankyCycleForward"),
+	["n|<A-n>"] = map_cmd("<Plug>(YankyCycleBackward)"):with_silent():with_noremap():with_desc("YankyCycleBackward"),
 	-- nvim-bufdel
 	-- Bufferline
 	["n|<A-j>"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent():with_desc("buffer: Switch to next"),
@@ -183,7 +190,8 @@ local plug_map = {
 	["n|<Leader>nr"] = map_cr("NvimTreeRefresh"):with_noremap():with_silent(),
 	["n|<Leader>e"] = map_cr('execute "NvimTreeClose" | lcd %:p:h | cd `pwd` | NvimTreeFindFileToggle')
 		:with_noremap()
-		:with_silent(),
+		:with_silent()
+		:with_desc("Change workspace to pwd"),
 	-- Plugin Telescope
 	["n|<leader>u"] = map_callback(function()
 			require("telescope").extensions.undo.undo()

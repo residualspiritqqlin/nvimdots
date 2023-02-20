@@ -5,10 +5,15 @@ return function()
 		git = require("modules.utils.icons").get("git"),
 		ui = require("modules.utils.icons").get("ui"),
 	}
+	vim.g.nvim_tree_root_folder_modifier = ":e"
+	vim.g.loaded_netrw = 1
+	vim.g.loaded_netrwPlugin = 1
+
+	-- set termguicolors to enable highlight groups
+	vim.opt.termguicolors = true
 
 	require("nvim-tree").setup({
 		create_in_closed_folder = false,
-		respect_buf_cwd = false,
 		auto_reload_on_write = true,
 		disable_netrw = false,
 		hijack_cursor = true,
@@ -20,6 +25,8 @@ return function()
 		open_on_tab = false,
 		sort_by = "name",
 		sync_root_with_cwd = true,
+		update_cwd = true,
+		respect_buf_cwd = true,
 		view = {
 			adaptive_size = false,
 			centralize_selection = false,
@@ -39,6 +46,13 @@ return function()
 					height = 30,
 					row = 1,
 					col = 1,
+				},
+			},
+			mappings = {
+				custom_only = false,
+				list = {
+					{ key = { "<C-]>", "<2-RightMouse>", "<CR>" }, action = "cd" },
+					{ key = "u", action = "dir_up" },
 				},
 			},
 		},
