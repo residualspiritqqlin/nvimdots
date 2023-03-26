@@ -36,6 +36,7 @@ ui["lukas-reineke/indent-blankline.nvim"] = {
 }
 ui["SmiteshP/nvim-gps"] = {
 	lazy = true,
+	after = "nvim-treesitter",
 	config = require("ui.gps"),
 	commit = "8f950881c6308884e1262f1a10eadede1ad4253c",
 }

@@ -37,6 +37,7 @@ return function()
 		},
 		-- Change bufferline's highlights here! See `:h bufferline-highlights` for detailed explanation.
 		-- Note: If you use catppuccin then modify the colors below!
+
 		highlights = {},
 	}
 

@@ -52,6 +52,7 @@ local plug_map = {
 	["n|<leader>be"] = map_cr("BufferLineSortByExtension"):with_noremap():with_desc("buffer: Sort by extension"),
 	["n|<leader>bd"] = map_cr("BufferLineSortByDirectory"):with_noremap():with_desc("buffer: Sort by direrctory"),
 	["n|<leader-bc>"] = map_cr("BufDel"):with_noremap():with_silent():with_desc("buffer: Close current"),
+	["n|<leader>bf"] = map_cu("Telescope buffers"):with_noremap():with_silent():with_desc("find: Buffer opened"),
 	["n|<leader>bp"] = map_cr("BufferLinePick"):with_noremap(),
 	["n|<C-x>b"] = map_cr("BufferLinePick"):with_noremap():with_silent(),
 	["n|<leader>1"] = map_cr("BufferLineGoToBuffer 1"):with_noremap():with_silent():with_desc("buffer: Goto buffer 1"),
@@ -231,7 +232,6 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("editn: Change current direrctory by zoxide"),
-	["n|<leader>fb"] = map_cu("Telescope buffers"):with_noremap():with_silent():with_desc("find: Buffer opened"),
 	["n|<leader>fs"] = map_cu("Telescope grep_string"):with_noremap():with_silent():with_desc("find: Current word"),
 	-- Plugin accelerate-jk
 	["n|j"] = map_callback(function()

@@ -86,7 +86,7 @@ return function()
 			in_select = true,
 		},
 		outline = {
-			win_position = "right",
+			win_position = "left",
 			win_with = "_sagaoutline",
 			win_width = 30,
 			auto_preview = false,

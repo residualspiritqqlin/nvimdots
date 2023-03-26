@@ -122,7 +122,7 @@ return function()
 			lualine_a = { "mode" },
 			lualine_b = { { "branch" }, { "diff", source = diff_source } },
 			lualine_c = {
-				{ "filename" },
+				{ "filename", path = 2 },
 				{ "lsp_progress" },
 				{ gps_content, cond = gps.is_available },
 			},
